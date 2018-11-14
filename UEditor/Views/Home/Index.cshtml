@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model UEditor.Models.Post 
+
+<h2>百度UEditor</h2>
+<link href="~/Content/ueditor/themes/default/css/ueditor.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Content/ueditor/ueditor.config.js"></script>
+<script src="~/Content/ueditor/ueditor.all.js"></script>
+<script src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="~/Content/ueditor/ueditor.parse.js"></script>
+<script type="text/javascript">
+    $(function () {
+        Window.UEDITOR_HOME_URL = "/Content/ueditor/";
+        var editor = new baidu.editor.ui.Editor({ initialFrameHeight: 400 });
+        editor.render("Content");
+    });
+    </script>
+<div style="width:40%; height:400px;">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "addForm" }))
+    {
+        @Html.EditorFor(model => model.Content)    
+        <br />
+        <input type="submit" value="提交" />
+    }
+</div>
